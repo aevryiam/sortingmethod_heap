@@ -36,15 +36,6 @@ void heapSort(vector<int>& arr) {
     }
 }
 
-void printMemoryUsage() {
-    PROCESS_MEMORY_COUNTERS memInfo;
-    if (GetProcessMemoryInfo(GetCurrentProcess(), &memInfo, sizeof(memInfo))) {
-        cout << "Memory used: " << memInfo.WorkingSetSize / 1024 << " KB" << endl;
-    } else {
-        cerr << "Failed to get memory usage." << endl;
-    }
-}
-
 vector<int> loadFromCSV(const string& filename) {
     ifstream file(filename);
     vector<int> data;
@@ -60,6 +51,15 @@ vector<int> loadFromCSV(const string& filename) {
     return data;
 }
 
+size_t getMemoryUsedKB() {
+    PROCESS_MEMORY_COUNTERS memInfo;
+    if (GetProcessMemoryInfo(GetCurrentProcess(), &memInfo, sizeof(memInfo))) {
+        return memInfo.WorkingSetSize / 1024;
+    } else {
+        return 0;
+    }
+}
+
 int main() {
     string filename = "input.csv";
     vector<int> arr = loadFromCSV(filename);
@@ -69,24 +69,37 @@ int main() {
         arr = {4, 10, 3, 5, 1};
     }
 
-    cout << "Before sorting: ";
-    for (int num : arr)
-        cout << num << " ";
-    cout << endl;
+    // Before sorting output
+    // cout << "Before sorting: ";
+    // for (int num : arr)
+    // cout << num << " ";
+    // cout << endl;
 
+    size_t inputSize = arr.size();
+
+    // Sorting & timing
     auto start = high_resolution_clock::now();
     heapSort(arr);
     auto stop = high_resolution_clock::now();
 
-    cout << "After heap sort: ";
-    for (int num : arr)
-        cout << num << " ";
-    cout << endl;
-
     auto duration = duration_cast<microseconds>(stop - start);
-    cout << "Execution time: " << duration.count() << " microseconds" << endl;
+    size_t memoryKB = getMemoryUsedKB();
 
-    printMemoryUsage();
-    
+    // Output results (all elements)
+    // cout << "After heap sort: ";
+    // for (int num : arr)
+    //     cout << num << " ";
+    // cout << endl;
+
+
+    // Output first 10 elements only
+    cout << "Sorted (first 10): ";
+    for (int i = 0; i < min((size_t)10, arr.size()); i++)
+        cout << arr[i] << " ";
+    cout << "...\n";
+
+    cout << "Execution time: " << duration.count() << " microseconds" << endl;
+    cout << "Memory used: " << memoryKB << " KB" << endl;
+
     return 0;
 }
