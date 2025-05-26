@@ -15,5 +15,5 @@ Heap sort efisien karena:
 
 Gunakan strategi yang sesuai dengan kebutuhan urutan (ascending atau descending).
 
-### Catatan
-• Rename file csv yang ingin kamu gunakan menjadi input.csv, atau cukup gunakan script python yang sudah saya sediakan juga bilamana menginginkan jumlah yang tidak ada dalam repo ini.
+## Catatan
+• Rename file csv yang ingin kamu gunakan menjadi input.csv, atau cukup gunakan script python yang sudah saya sediakan juga bilamana menginginkan jumlah yang tidak ada dalam repo ini. Gunakan pemisah koma (,) untuk setiap angka di file csv yang akan digunakan. 
