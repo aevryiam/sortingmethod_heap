@@ -14,3 +14,6 @@ Heap sort efisien karena:
 • Proses menukar root dan memperbaiki heap berulang adalah O(n log n).
 
 Gunakan strategi yang sesuai dengan kebutuhan urutan (ascending atau descending).
+
+### Catatan
+• Rename file csv yang ingin kamu gunakan menjadi input.csv, atau cukup gunakan script python yang sudah saya sediakan juga bilamana menginginkan jumlah yang tidak ada dalam repo ini.
